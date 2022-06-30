@@ -1,0 +1,11 @@
+{% extends "default.html" %}
+
+{% block header %}
+<h1>Категории</h1><hr>
+{% endblock %}
+
+{% block content %}
+{% for category in object_list %}
+<p>{{ category.name }}</p>{% if is_login %}<a href="/news/categories/{{ category.id }}/subscribe/"> - Подписаться</a>{% endif %}
+{% endfor %}
+{% endblock %}

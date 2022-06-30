@@ -1,0 +1,31 @@
+{% extends "default.html" %}
+{% load post_extras %}
+
+{% block header %}
+<h1>Все статьи</h1>
+{% endblock %}
+
+{% block content %}
+{% for post in object_list %}
+<a href="/news/{{ post.pk }}"><p>{{ post.title|censor:"Second" }}|{{ post.created_at|date:"d.m.Y" }}</p></a>
+<p>{{ post.text|truncatechars:5 }}</p>
+<br>
+{% endfor %}
+
+<span class="step-links">
+    {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; К началу</a>
+        <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+    {% endif %}
+
+    <span class="current">
+        Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+    </span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">К последней &raquo;</a>
+    {% endif %}
+</span>
+
+{% endblock %}

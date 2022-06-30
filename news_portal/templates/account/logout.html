@@ -1,0 +1,17 @@
+{% extends "default.html" %}
+
+{% block header %}<h1>Выход из системы</h1>{% endblock %}
+
+{% block content %}
+
+<p>Вы действительно хотите выйти?</p>
+
+<form method="post" action="{% url 'account_logout' %}">
+  {% csrf_token %}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+  {% endif %}
+  <button type="submit">Выйти</button>
+</form>
+
+{% endblock %}

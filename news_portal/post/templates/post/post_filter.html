@@ -1,0 +1,16 @@
+{% extends "default.html" %}
+
+{% block header %}
+<h1>Поиск новостей</h1>
+{% endblock %}
+
+{% block content %}
+<form method="get">
+    {{ filter.form.as_p }}
+    <input type="submit" />
+</form>
+
+{% for obj in filter.qs %}
+    <a href="/news/{{ obj.pk }}">{{ obj.title }}</a> - {{ obj.text|truncatechars:5 }}<br />
+{% endfor %}
+{% endblock %}

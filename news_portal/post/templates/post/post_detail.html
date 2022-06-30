@@ -1,0 +1,11 @@
+{% extends "default.html" %}
+{% load post_extras %}
+
+{% block header %}
+<h1>{{ object.title|censor:"Second" }}</h1>
+<p>{{ object.created_at|date:"d.m.Y" }}</p>
+{% endblock %}
+
+{% block content %}
+<p>{{ object.text|censor:"Full" }}</p>
+{% endblock %}

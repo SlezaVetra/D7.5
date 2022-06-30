@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div>
+    {% if request.user.is_authenticated %}
+    <p>Добро пожаловать <b>{{ request.user.username }}</b>. <a href="/accounts/logout/">Выйти</a></p><br>
+        {% if not request.user.author %}
+        <a href="/author/join/">Стать автором</a>
+        {% else %}
+        <p>Вы являетесь Автором</p>
+        {% endif %}
+    {% else %}
+    <p>Вы не авторизованы. <a href="/accounts/login/">Войти</a></p>
+    {% endif %}
+</div>
+<hr>
+{% block header %}{% endblock %}
+<hr>
+{% block content %}{% endblock %}
+
+</body>
+</html>
